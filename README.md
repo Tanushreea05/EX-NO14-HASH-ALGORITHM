@@ -27,9 +27,38 @@ To implement HASH ALGORITHM
 
 
 ## Program:
+```
+#include <stdio.h>
+#include <string.h>
+#include <openssl/sha.h>
+
+int main() {
+    char message[256];
+    unsigned char hash[SHA256_DIGEST_LENGTH]; // 32 bytes
+
+    // Input from user
+    printf("Enter the message to hash: ");
+    fgets(message, sizeof(message), stdin);
+    message[strcspn(message, "\n")] = '\0'; // Remove newline character
+
+    // Generate SHA-256 hash
+    SHA256((unsigned char *)message, strlen(message), hash);
+
+    // Print the hash in hexadecimal format
+    printf("SHA-256 Hash: ");
+    for (int i = 0; i < SHA256_DIGEST_LENGTH; i++) {
+        printf("%02x", hash[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
+```
 
 
 ## Output:
+![Screenshot 2025-05-20 220024](https://github.com/user-attachments/assets/a5ac5b76-932b-467a-8b01-77238e31d7c6)
+
 
 ## Result:
 The program is executed successfully.
